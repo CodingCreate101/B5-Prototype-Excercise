@@ -139,3 +139,10 @@ Baby.prototype.play = function () {
   */
 
 ///////// END OF CHALLENGE /////////
+
+module.exports = {
+  Airplane,
+  Person,
+  Car,
+  Baby,
+};
