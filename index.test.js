@@ -38,4 +38,24 @@ describe("Person", () => {
     expect(johnDoe.stomach.length).toBe(10);
     expect(johnDoe.stomach[9]).toBe("Tea");
   });
+
+  it("when poops, stomach should be empty", () => {
+    const breakfast = [
+      "Dosa",
+      "Dosa",
+      "Coke",
+      "Ice Cream",
+      "Gulab Jamun",
+      "Tea",
+      "Dosa",
+      "Dosa",
+    ];
+    breakfast.map(breakfastItem => johnDoe.eat(breakfastItem));
+    johnDoe.poop();
+    expect(johnDoe.stomach.length).toBe(0);
+  });
+
+  it("should return 'name, age' with toString method", () => {
+    expect(johnDoe.toString()).toBe("John Doe, 25");
+  });
 });
