@@ -1,11 +1,10 @@
-const { Person } = require("./index.js");
-
-let johnDoe;
-beforeEach(() => {
-  johnDoe = new Person("John Doe", 25);
-});
+const { Person, Car } = require("./index.js");
 
 describe("Person", () => {
+  let johnDoe;
+  beforeEach(() => {
+    johnDoe = new Person("John Doe", 25);
+  });
   it("should initiate new person with name, age and empty stomach", () => {
     expect(johnDoe.name).toBe("John Doe");
     expect(johnDoe.age).toBe(25);
@@ -57,5 +56,22 @@ describe("Person", () => {
 
   it("should return 'name, age' with toString method", () => {
     expect(johnDoe.toString()).toBe("John Doe, 25");
+  });
+});
+
+describe("Car", () => {
+  let cheeta;
+  beforeEach(() => {
+    cheeta = new Car("Cheeta", 35);
+  });
+
+  it("should have a model and mileage", () => {
+    expect(cheeta.model).toBe("Cheeta");
+    expect(cheeta.milesPerGallon).toBe(35);
+  });
+
+  it("should initialize tank 0 and odometer 0", () => {
+    expect(cheeta.tank).toBe(0);
+    expect(cheeta.odometer).toBe(0);
   });
 });
