@@ -13,5 +13,16 @@ git pull origin CodingCreate101:student/tejas.soe
 
 npm i
 
+# Run all tests once
 npm test
+```
+
+### More test commands
+
+```bash
+# Watch files for changes and test - for TDD
+npm run testWatch
+
+# Test coverage
+npm run test:coverage
 ```
