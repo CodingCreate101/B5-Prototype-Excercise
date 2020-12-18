@@ -120,11 +120,11 @@ function Baby(name, age, favoriteToy) {
 }
 
 Baby.prototype = Object.create(Person.prototype);
-Object.defineProperty(Baby.prototype, "constructor", {
-  value: Baby,
-  enumerable: false,
-  writable: true,
-});
+// Object.defineProperty(Baby.prototype, "constructor", {
+//   value: Baby,
+//   enumerable: false,
+//   writable: true,
+// });
 Baby.prototype.play = function () {
   return `Playing with ${this.favoriteToy}`;
 };
