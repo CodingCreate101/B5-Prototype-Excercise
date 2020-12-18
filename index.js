@@ -8,23 +8,35 @@
 */
 
 // EXAMPLE SOLUTION CODE:
+// function Airplane(name) {
+//   this.name = name;
+//   this.isFlying = false;
+// }
+// Airplane.prototype.takeOff = function () {
+//   this.isFlying = true;
+// };
+// Airplane.prototype.land = function () {
+//   this.isFlying = false;
+// };
+
 function Airplane(name) {
-    this.name = name;
-    this.isFlying = false;
-  }
-  Airplane.prototype.takeOff = function () {
-    this.isFlying = true;
-  };
-  Airplane.prototype.land = function () {
-    this.isFlying = false;
-  };
-  
-  
-  /*
+  this.name = name;
+  this.isFlying = false;
+}
+
+Airplane.prototype.takeOff = function () {
+  this.isFlying = true;
+};
+
+Airplane.prototype.land = function () {
+  this.isFlying = false;
+};
+
+/*
   // 👇 COMPLETE YOUR WORK BELOW 👇
   */
-  
-  /*
+
+/*
     TASK 1
       - Write a Person Constructor that initializes `name` and `age` from arguments.
       - All instances of Person should initialize with an empty `stomach` array.
@@ -36,18 +48,28 @@ function Airplane(name) {
       - Give instances of Person a method `.toString()`:
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
-  
- function Person() {
-    
-  }
- 
- 
 
-  
-  
-  
-  
-  /*
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+}
+
+Person.prototype.eat = function (food) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(food);
+  }
+};
+
+Person.prototype.poop = function () {
+  this.stomach = [];
+};
+
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`;
+};
+
+/*
     TASK 2
       - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
       - All instances built with Car:
@@ -60,32 +82,67 @@ function Airplane(name) {
       - STRETCH: A car which runs out of `fuel` while driving can't drive any more distance:
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
-  
- function Car() {
-    
+
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+
+Car.prototype.fill = function (gallons) {
+  this.tank += gallons;
+  // this.tank = isNaN( gallons) ? this.tank : this.tank + Number(gallons);
+};
+
+Car.prototype.drive = function (distance) {
+  if (this.tank < distance / this.milesPerGallon) {
+    const maxTravellableDistance = this.milesPerGallon * this.tank;
+    this.odometer += maxTravellableDistance;
+    this.tank = 0;
+    return `I ran out of fuel at ${this.odometer} miles!`;
   }
-  
-  
-  /*
+  this.tank -= distance / this.milesPerGallon;
+  this.odometer += distance;
+};
+
+/*
     TASK 3
       - Write a Baby constructor subclassing Person.
       - Besides `name` and `age`, Baby takes a third argument to initialize `favoriteToy`.
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
-  }
- 
-  
-  /* 
+
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
+}
+
+Baby.prototype = Object.create(Person.prototype);
+// Object.defineProperty(Baby.prototype, "constructor", {
+//   value: Baby,
+//   enumerable: false,
+//   writable: true,
+// });
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`;
+};
+
+/* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. With the `new` keyword, an empty object is created and referenced by the `this` variable
+    2. The `this` variable points to the instance created by the constructor function when used inside it 
+    3. The `this` variable points to a global object if it's not in strict mode, otherwise, it'd be undefined
+    4. It's possible to explicitly bind `this` to an object with the use of `call`, `apply`, and `bind` methods
   */
-  
-  
-  ///////// END OF CHALLENGE /////////
+
+///////// END OF CHALLENGE /////////
+
+module.exports = {
+  Airplane,
+  Person,
+  Car,
+  Baby,
+};

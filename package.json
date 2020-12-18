@@ -1,0 +1,24 @@
+{
+  "name": "b5-prototype-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --collect-coverage",
+    "testWatch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingCreate101/B5-Prototype-Excercise.git"
+  },
+  "author": "Tejas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodingCreate101/B5-Prototype-Excercise/issues"
+  },
+  "homepage": "https://github.com/CodingCreate101/B5-Prototype-Excercise#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
